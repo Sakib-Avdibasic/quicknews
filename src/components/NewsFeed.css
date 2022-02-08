@@ -54,7 +54,7 @@ main article .img-container img {
 	display: block;
 	-o-object-fit: cover;
 	object-fit: cover;
-	transition: 0.15s transform;
+	transition: 0.2s transform;
 }
 
 main article .article-content {
@@ -135,7 +135,7 @@ main article .article-content a:hover {
 	}
 
 	main article {
-		height: 30vw;
+		height: 35vw;
 		width: 97.5%;
 		padding: 0.5em 0;
 	}
@@ -146,11 +146,6 @@ main article .article-content a:hover {
 
 	main article .article-content p {
 		padding: 0;
-	}
-
-	main article .article-content h3,
-	main article .article-content p {
-		font-size: 0.6em;
 	}
 
 	main article .article-content a {
