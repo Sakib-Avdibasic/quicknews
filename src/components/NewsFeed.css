@@ -63,7 +63,8 @@ main article .article-content {
 	justify-content: space-between;
 }
 
-main article .article-content h3 {
+main article .article-content span {
+	display: block;
 	font-size: 1em;
 	font-style: italic;
 	color: #d30d1d;
@@ -71,7 +72,8 @@ main article .article-content h3 {
 	padding-bottom: 0.5em;
 }
 
-main article .article-content p {
+main article .article-content h2 {
+	font-size: 1em;
 	padding-bottom: 0.5em;
 	font-weight: bold;
 }
@@ -119,8 +121,8 @@ main article .article-content a:hover {
 		max-width: 30%;
 	}
 
-	main article .article-content h3,
-	main article .article-content p {
+	main article .article-content span,
+	main article .article-content h2 {
 		font-size: 0.7em;
 	}
 
@@ -144,7 +146,7 @@ main article .article-content a:hover {
 		padding: 0 0.3em;
 	}
 
-	main article .article-content p {
+	main article .article-content h2 {
 		padding: 0;
 	}
 

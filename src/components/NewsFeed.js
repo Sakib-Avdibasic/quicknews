@@ -69,8 +69,8 @@ const NewsFeed = () => {
 								<img src={article.image} alt="Article image" />
 							</div>
 							<div className="article-content">
-								<h3>{article.author}</h3>
-								<p>{article.lead_paragraph}</p>
+								<span>{article.author}</span>
+								<h2>{article.lead_paragraph}</h2>
 								<a href={article.url} target="_blank">
 									Read at nytimes.com
 								</a>
