@@ -19,11 +19,11 @@ const NewsFeed = () => {
 			.toJSON()
 			.slice(0, 10);
 
-		let requestUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?${
-			section && `begin_date=${weekAgo}`
-		}`;
+		let requestUrl =
+			'https://api.nytimes.com/svc/search/v2/articlesearch.json?';
 		if (q) requestUrl += `&q=${q}`;
-		if (section) requestUrl += `&fq=section_name:(${section})`;
+		else if (section)
+			requestUrl += `&fq=section_name:(${section})&begin_date=${weekAgo}`;
 		requestUrl += '&api-key=sSPkztmo88VRP5oGQ8EhnsyYAxsH3MEE';
 
 		axios

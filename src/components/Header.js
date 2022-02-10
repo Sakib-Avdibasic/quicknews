@@ -14,8 +14,7 @@ const Header = () => {
 	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 	const [searchQuery, setSearchQuery] = useState('');
 	const navigate = useNavigate();
-	const performSearch = () =>
-		navigate(`${window.location.pathname}?q=${searchQuery}`);
+	const performSearch = () => navigate(`/?q=${searchQuery}`);
 
 	useEffect(() => {
 		window.addEventListener('resize', () => setScreenWidth(window.innerWidth));
