@@ -1,11 +1,11 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { useState, useEffect } from 'react';
 import './Header.css';
 
-library.add(faSearch, faBars);
+library.add(faSearch);
 
 const sections = ['health', 'food', 'science', 'sports', 'technology'];
 
@@ -27,9 +27,19 @@ const Header = () => {
 				<Link to="/">QuickNews</Link>
 			</h1>
 			<button id="toggle-nav-btn" onClick={() => setNavToggled(!navToggled)}>
-				<FontAwesomeIcon icon="bars" />
+				<span
+					className={`hamburger-bar ${navToggled ? 'transformed-top-bun' : ''}`}
+				/>
+				<span
+					className={`hamburger-bar ${navToggled ? 'transformed-meat' : ''}`}
+				/>
+				<span
+					className={`hamburger-bar ${
+						navToggled ? 'transformed-bottom-bun' : ''
+					}`}
+				/>
 			</button>
-			{(navToggled || screenWidth > 614) && (
+			{(navToggled || screenWidth > 630) && (
 				<nav>
 					<ul id="nav-list">
 						{sections.map((section, index) => {

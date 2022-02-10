@@ -71,7 +71,7 @@ header #search-area button {
 	font-size: 1.2em;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 780px) {
 	h1 {
 		width: 100%;
 		text-align: center;
@@ -79,7 +79,7 @@ header #search-area button {
 	}
 }
 
-@media screen and (max-width: 614px) {
+@media screen and (max-width: 630px) {
 	header nav {
 		width: 100%;
 		margin-bottom: 0.5em;
@@ -87,6 +87,7 @@ header #search-area button {
 
 	header nav #nav-list {
 		flex-direction: column;
+		margin-top: 1em;
 	}
 
 	header nav #nav-list li .nav-link {
@@ -105,6 +106,33 @@ header #search-area button {
 
 	#toggle-nav-btn {
 		display: block;
+	}
+
+	.hamburger-bar {
+		display: block;
+		width: 20px;
+		height: 2px;
+		position: relative;
+		background: black;
+		border-radius: 3px;
+		z-index: 1;
+		transition: 0.3s all;
+	}
+
+	.hamburger-bar:not(:last-of-type) {
+		margin-bottom: 5px;
+	}
+
+	.transformed-top-bun {
+		transform: rotate(45deg) translateY(10px);
+	}
+
+	.transformed-bottom-bun {
+		transform: rotate(-45deg) translateY(-10px);
+	}
+
+	.transformed-meat {
+		opacity: 0;
 	}
 
 	#search-area {
