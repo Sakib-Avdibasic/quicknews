@@ -115,7 +115,6 @@ header #search-area button {
 		position: relative;
 		background: black;
 		border-radius: 3px;
-		z-index: 1;
 		transition: 0.3s all;
 	}
 
