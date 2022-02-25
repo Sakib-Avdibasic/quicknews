@@ -98,9 +98,6 @@ header #search-area button {
 
 	header nav #nav-list li:not(:last-of-type) {
 		border-right: none;
-	}
-
-	header nav #nav-list li {
 		border-bottom: 0.1em solid gray;
 	}
 

@@ -27,7 +27,7 @@ main article {
 }
 
 main article:hover img {
-	transform: scale(1.2);
+	transform: scale(1.1);
 }
 
 main article:nth-of-type(odd) {
@@ -54,7 +54,7 @@ main article .img-container img {
 	display: block;
 	-o-object-fit: cover;
 	object-fit: cover;
-	transition: 0.2s transform;
+	transition: transform 1s;
 }
 
 main article .article-content {

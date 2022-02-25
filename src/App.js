@@ -10,6 +10,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<NewsFeed />}>
 					<Route path=":section" element={<NewsFeed />} />
+					<Route path="search" element={<NewsFeed />} />
 				</Route>
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
