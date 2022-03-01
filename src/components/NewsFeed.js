@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams, useSearchParams } from 'react-router-dom';
+import useWindowDimensions from '../customHooks/WindowDimensions';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -12,6 +13,7 @@ const NewsFeed = () => {
 	const [articles, setArticles] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [loadingError, setLoadingError] = useState(false);
+	const { width } = useWindowDimensions();
 	const { section } = useParams();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const q = searchParams.get('q');
@@ -86,7 +88,7 @@ const NewsFeed = () => {
 								<span>{article.author}</span>
 								<h2>{article.headline}</h2>
 								<a href={article.url} target="_blank">
-									{window.innerWidth > 500 ? (
+									{width > 500 ? (
 										'Read more at nytimes.com'
 									) : (
 										<FontAwesomeIcon icon="external-link-alt" />

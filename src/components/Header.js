@@ -1,8 +1,9 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import useWindowDimensions from '../customHooks/WindowDimensions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { useState, useEffect } from 'react';
 import './Header.css';
 
 library.add(faSearch);
@@ -11,14 +12,10 @@ const sections = ['health', 'food', 'science', 'sports', 'technology'];
 
 const Header = () => {
 	const [navToggled, setNavToggled] = useState(false);
-	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+	const { width } = useWindowDimensions();
 	const [searchQuery, setSearchQuery] = useState('');
 	const navigate = useNavigate();
 	const performSearch = () => navigate(`/search?q=${searchQuery}`);
-
-	useEffect(() => {
-		window.addEventListener('resize', () => setScreenWidth(window.innerWidth));
-	}, []);
 
 	return (
 		<header>
@@ -38,7 +35,7 @@ const Header = () => {
 					}`}
 				/>
 			</button>
-			{(navToggled || screenWidth > 630) && (
+			{(navToggled || width > 630) && (
 				<nav>
 					<ul id="nav-list">
 						{sections.map((section, index) => {
