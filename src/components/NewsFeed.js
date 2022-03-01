@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useSearchParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import './NewsFeed.css';
+
+library.add(faExternalLinkAlt);
 
 const NewsFeed = () => {
 	const [articles, setArticles] = useState([]);
@@ -14,18 +19,24 @@ const NewsFeed = () => {
 	useEffect(() => {
 		setIsLoading(true);
 
-		const currentDate = new Date();
-		const weekAgo = new Date(currentDate.setDate(currentDate.getDate() - 7))
-			.toJSON()
-			.slice(0, 10);
-
 		let requestUrl =
 			'https://api.nytimes.com/svc/search/v2/articlesearch.json?';
-		if (q) requestUrl += `&q=${q}`;
-		else if (section)
+		let docTitle;
+		if (q) {
+			requestUrl += `&q=${q}`;
+			docTitle = `${q} · QuickNews`;
+		} else if (section) {
+			const currentDate = new Date();
+			const weekAgo = new Date(currentDate.setDate(currentDate.getDate() - 7))
+				.toJSON()
+				.slice(0, 10);
 			requestUrl += `&fq=section_name:(${section})&begin_date=${weekAgo}`;
-		requestUrl += '&api-key=sSPkztmo88VRP5oGQ8EhnsyYAxsH3MEE';
+			docTitle = `${section[0].toUpperCase() + section.slice(1)} · QuickNews`;
+		}
 
+		document.title = docTitle || 'QuickNews';
+
+		requestUrl += '&api-key=sSPkztmo88VRP5oGQ8EhnsyYAxsH3MEE';
 		axios
 			.get(requestUrl)
 			.then(response => {
@@ -33,15 +44,18 @@ const NewsFeed = () => {
 					const articleContent = {
 						id: article._id,
 						url: article.web_url || 'https://www.nytimes.com',
-						lead_paragraph: article.headline.main,
+						headline: article.headline.main,
 						author:
-							(article.byline.person[0]?.firstname || 'Jane') +
-							' ' +
-							(article.byline.person[0]?.lastname || 'Doe'),
+							article.byline.person.length != 0
+								? article.byline.person[0].firstname +
+								  ' ' +
+								  article.byline.person[0].lastname
+								: article.byline.organization,
 						image: article.multimedia[1]?.url
 							? `https://www.nytimes.com/${article.multimedia[1].url}`
 							: 'https://images.assetsdelivery.com/compings_v2/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016.jpg',
 					};
+
 					return articleContent;
 				});
 
@@ -70,9 +84,13 @@ const NewsFeed = () => {
 							</div>
 							<div className="article-content">
 								<span>{article.author}</span>
-								<h2>{article.lead_paragraph}</h2>
+								<h2>{article.headline}</h2>
 								<a href={article.url} target="_blank">
-									Read at nytimes.com
+									{window.innerWidth > 500 ? (
+										'Read more at nytimes.com'
+									) : (
+										<FontAwesomeIcon icon="external-link-alt" />
+									)}
 								</a>
 							</div>
 						</article>

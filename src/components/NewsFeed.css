@@ -78,6 +78,12 @@ main article .article-content h2 {
 	font-weight: bold;
 }
 
+.fa-external-link-alt {
+	font-size: 0.8em;
+	margin: 0 0.7em;
+	color: #c09e9e;
+}
+
 main article .article-content a {
 	font-size: 0.9em;
 }
@@ -116,18 +122,14 @@ main article .article-content a:hover {
 }
 
 @media screen and (max-width: 768px) {
+	main article .article-content h2,
+	main article .article-content span {
+		font-size: 0.9em;
+	}
+
 	main article .img-container {
 		min-width: 30%;
 		max-width: 30%;
-	}
-
-	main article .article-content span,
-	main article .article-content h2 {
-		font-size: 0.7em;
-	}
-
-	main article .article-content a {
-		font-size: 0.6em;
 	}
 }
 
@@ -150,7 +152,21 @@ main article .article-content a:hover {
 		padding: 0;
 	}
 
-	main article .article-content a {
-		font-size: 0.5em;
+	main article .article-content span {
+		padding-bottom: 0.3em;
+	}
+
+	main article .article-content h2,
+	main article .article-content span {
+		font-size: 0.8em;
+	}
+
+	main article .article-content h2,
+	a {
+		display: inline;
+	}
+
+	main article .article-content a::after {
+		content: '';
 	}
 }
