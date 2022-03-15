@@ -39,8 +39,9 @@ const NewsFeed = () => {
 		document.title = docTitle || 'QuickNews';
 
 		requestUrl += '&api-key=sSPkztmo88VRP5oGQ8EhnsyYAxsH3MEE';
+		const controller = new AbortController();
 		axios
-			.get(requestUrl)
+			.get(requestUrl, { signal: controller.signal })
 			.then(response => {
 				const data = response.data.response.docs.map(article => {
 					const articleContent = {
@@ -57,7 +58,6 @@ const NewsFeed = () => {
 							? `https://www.nytimes.com/${article.multimedia[1].url}`
 							: 'https://images.assetsdelivery.com/compings_v2/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016.jpg',
 					};
-
 					return articleContent;
 				});
 
@@ -66,15 +66,22 @@ const NewsFeed = () => {
 				setArticles(data);
 			})
 			.catch(err => {
-				console.log(err);
-				setLoadingError(true);
+				if (axios.isCancel(err)) {
+					console.log('successfully aborted');
+				} else {
+					setLoadingError(true);
+				}
 			});
+
+		return () => {
+			controller.abort();
+		};
 	}, [section, q]);
 
 	return (
 		<main>
 			{loadingError ? (
-				<h2>Could not load articles</h2>
+				<h2>Couldn't load articles</h2>
 			) : isLoading ? (
 				<h2>Loading...</h2>
 			) : (
